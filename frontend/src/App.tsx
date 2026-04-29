@@ -118,10 +118,10 @@ export default function App() {
     try {
       setError("");
       setIsLoading(true);
-      
+
       // Get real location for WOW factor
       const { lat, lng } = await getCoordinates();
-      
+
       const res = await api.verifyUser(targetPhone, apiKeyPayload?.key || "sk_live_demo123", lat, lng);
       const payload = res.data;
       setResult(payload);
@@ -428,7 +428,7 @@ export default function App() {
                           <p className="text-sm text-cyan-100/90 leading-relaxed italic border-l-2 border-cyan-500/50 pl-3">
                             "{result.ai_insight}"
                           </p>
-                          
+
                           {result.logic_chain && (
                             <div className="mt-4 space-y-2">
                               <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Agent Reasoning Path</p>
@@ -628,8 +628,8 @@ export default function App() {
               <div className="grid gap-3 lg:grid-cols-3">
                 <PricingCard
                   title="Starter"
-                  price="$25"
-                  subtitle="Hackathons / Startups"
+                  price="$10"
+                  subtitle="Per month"
                   bullets={["SIM Swap Detection (CAMARA)", "Number Verification (CAMARA)", "1,000 checks/month"]}
                   isActive={apiKeyPayload?.plan === "STARTER"}
                   onClick={() => {
@@ -639,7 +639,7 @@ export default function App() {
                 />
                 <PricingCard
                   title="Growth"
-                  price="$149"
+                  price="$99"
                   subtitle="Per month"
                   bullets={["Device Status (CAMARA)", "Location Verification (CAMARA)", "10,000 checks/month"]}
                   featured
@@ -698,7 +698,7 @@ export default function App() {
                   disabled={apiKeyLoading}
                   className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 outline-none focus:border-cyan-500 disabled:opacity-50"
                 >
-                  <option value="STARTER">Starter ($0)</option>
+                  <option value="STARTER">Starter ($10/mo)</option>
                   <option value="GROWTH">Growth ($99/mo)</option>
                   <option value="ENTERPRISE">Enterprise (Custom)</option>
                 </select>
