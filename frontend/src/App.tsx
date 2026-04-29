@@ -543,7 +543,7 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-slate-800 bg-[#0d1117] p-4 font-mono text-[13px] leading-relaxed relative group">
+                <div className="rounded-xl border border-slate-800 bg-[#0d1117] p-4 font-mono text-[12px] sm:text-[13px] leading-relaxed relative group overflow-x-auto">
                   <button
                     onClick={copyDocsCode}
                     className="absolute top-3 right-3 text-slate-500 hover:text-white transition flex items-center gap-1 opacity-0 group-hover:opacity-100"
@@ -592,8 +592,8 @@ export default function App() {
 
               <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
                 <h3 className="mb-3 text-sm font-semibold uppercase tracking-[0.1em] text-slate-400">Response Scheme</h3>
-                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 font-mono text-[13px] leading-relaxed">
-                  <pre className="text-emerald-200">
+                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 font-mono text-[11px] sm:text-[13px] leading-relaxed overflow-hidden">
+                  <pre className="text-emerald-200 whitespace-pre-wrap break-all">
                     {`{
                       "phone": "08033333333",
                       "number_verified": false,
