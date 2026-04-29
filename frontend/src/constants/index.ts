@@ -48,10 +48,10 @@ export const navItems: Array<{ id: View; label: string }> = [
 ];
 
 export const demoCases = [
-  { phone: "09035315300", hint: "Safe user (CAMARA)", tone: "LOW" as RiskScore },
-  { phone: "08022222222", hint: "SIM swap (CAMARA)", tone: "HIGH" as RiskScore },
-  { phone: "08033333333", hint: "Suspicious device", tone: "SUSPICIOUS" as RiskScore },
-  { phone: "08000000000", hint: "Number not found", tone: "HIGH" as RiskScore },
+  { phone: "09035315300", hint: "Validated Identity (Low Risk)", tone: "LOW" as RiskScore },
+  { phone: "08022222222", hint: "Active Account Takeover Attempt", tone: "HIGH" as RiskScore },
+  { phone: "08033333333", hint: "Unreachable / Stale Session", tone: "SUSPICIOUS" as RiskScore },
+  { phone: "08000000000", hint: "Database / HLR Mismatch", tone: "HIGH" as RiskScore },
 ];
 
 export function riskBadge(score: RiskScore) {

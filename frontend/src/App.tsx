@@ -312,20 +312,20 @@ export default function App() {
         </aside>
 
         <main className="flex-1 px-4 py-5 lg:px-8 lg:py-7">
-          <header className="mb-5 flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/60 p-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-3">
-              <img
-                src="/simverify_logo.png"
-                alt="SimVerify Logo"
+          <header className="mb-8 flex flex-col items-center justify-between gap-4 border-b border-slate-800 pb-6 sm:flex-row">
+            <div className="flex items-center gap-4">
+              <img 
+                src="/simverify_logo.png" 
+                alt="SimVerify Logo" 
                 className="w-12 h-12 rounded-xl object-contain"
               />
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">POST /verify-user</p>
-                <h1 className="text-xl font-bold text-white sm:text-2xl">SimVerify Anti-Fraud API</h1>
+                <p className="text-xs uppercase tracking-[0.2em] text-cyan-300 font-semibold">Real-time Network Verification</p>
+                <h1 className="text-xl font-bold text-white sm:text-2xl tracking-tight">SimVerify <span className="text-slate-500 font-light">| Anti-Fraud API</span></h1>
               </div>
             </div>
-            <div className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-300">
-              Built for real-world fintech fraud prevention
+            <div className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-300 font-medium">
+              <span className="text-emerald-400 mr-1">●</span> Production Environment v1.0.4
             </div>
           </header>
 
@@ -663,34 +663,34 @@ export default function App() {
               </div>
             </section>
 
-            <section id="apikey" className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 scroll-mt-10">
-              <h2 className="mb-3 text-lg font-semibold">Get API key</h2>
-              <p className="mb-4 text-sm text-slate-400">
-                Fill details below to create a demo key judges can test immediately.
+            <section id="apikey" className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 scroll-mt-10">
+              <h2 className="mb-3 text-lg font-semibold text-slate-100">API Provisioning Service</h2>
+              <p className="mb-5 text-sm text-slate-400 leading-relaxed">
+                Connect your platform to the carrier trust network. Configure your production credentials and select a tier to begin orchestration.
               </p>
 
               <div className="grid gap-3 sm:grid-cols-2">
                 <input
                   value={ownerName}
                   onChange={(e) => setOwnerName(e.target.value)}
-                  placeholder="Owner name"
+                  placeholder="Authorized Point of Contact"
                   disabled={apiKeyLoading}
-                  className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 outline-none focus:border-cyan-500 disabled:opacity-50"
+                  className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 outline-none focus:border-cyan-500 disabled:opacity-50 transition placeholder:text-slate-600"
                 />
                 <input
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
-                  placeholder="Company name"
+                  placeholder="Legal Entity Name"
                   disabled={apiKeyLoading}
-                  className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 outline-none focus:border-cyan-500 disabled:opacity-50"
+                  className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 outline-none focus:border-cyan-500 disabled:opacity-50 transition placeholder:text-slate-600"
                 />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email address"
+                  placeholder="Corporate Email Address"
                   disabled={apiKeyLoading}
-                  className="col-span-full sm:col-span-1 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 outline-none focus:border-cyan-500 disabled:opacity-50"
+                  className="col-span-full sm:col-span-1 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 outline-none focus:border-cyan-500 disabled:opacity-50 transition placeholder:text-slate-600"
                 />
                 <select
                   value={plan}
