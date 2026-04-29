@@ -54,9 +54,9 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ lastResult }) => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end">
       {isChatOpen && (
-        <div className="mb-3 w-[340px] max-h-[520px] rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
+        <div className="mb-3 w-[calc(100vw-2rem)] sm:w-[340px] max-h-[80vh] sm:max-h-[520px] rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
           
           {/* Header */}
           <div className="bg-gradient-to-r from-cyan-700 to-cyan-600 px-4 py-3 text-white shrink-0">
@@ -76,23 +76,23 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ lastResult }) => {
           </div>
 
           {/* Contact Info Bar */}
-          <div className="flex shrink-0 border-b border-slate-800 divide-x divide-slate-800 bg-slate-900">
-            <a href="tel:+2348100000000" className="flex-1 flex items-center justify-center gap-1.5 px-2 py-2 text-[11px] font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-300 transition truncate">
+          <div className="flex shrink-0 border-b border-slate-800 divide-x divide-slate-800 bg-slate-900 overflow-x-auto">
+            <a href="tel:+2348100000000" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-[10px] sm:text-[11px] font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-300 transition truncate min-w-0">
               <svg className="w-3.5 h-3.5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
               <span className="truncate">+234 810 000 0000</span>
             </a>
-            <a href="mailto:support@simverify.io" className="flex-1 flex items-center justify-center gap-1.5 px-2 py-2 text-[11px] font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-300 transition truncate">
+            <a href="mailto:support@simverify.io" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-[10px] sm:text-[11px] font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-300 transition truncate min-w-0">
               <svg className="w-3.5 h-3.5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <span className="truncate">support@simverify.io</span>
+              <span className="truncate italic">support@simverify.io</span>
             </a>
           </div>
 
           {/* Messages area */}
-          <div className="flex-1 overflow-y-auto p-4 bg-slate-950 space-y-3 min-h-[200px] max-h-[280px]">
+          <div className="flex-1 overflow-y-auto p-4 bg-slate-950 space-y-3 min-h-[200px]">
             {chatMessages.map((msg, idx) => (
               <div
                 key={idx}

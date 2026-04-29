@@ -51,7 +51,7 @@ export const demoCases = [
   { phone: "09035315300", hint: "Validated Identity (Low Risk)", tone: "LOW" as RiskScore },
   { phone: "08022222222", hint: "Active Account Takeover Attempt", tone: "HIGH" as RiskScore },
   { phone: "08033333333", hint: "Unreachable / Stale Session", tone: "SUSPICIOUS" as RiskScore },
-  { phone: "08000000000", hint: "Database / HLR Mismatch", tone: "HIGH" as RiskScore },
+  { phone: "08000000000", hint: "Phone Number Not Found", tone: "HIGH" as RiskScore },
 ];
 
 export function riskBadge(score: RiskScore) {
