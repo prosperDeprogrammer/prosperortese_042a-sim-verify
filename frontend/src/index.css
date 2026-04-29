@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: #03040c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ── Loading ── */
+.loading-bar {
+  height: 2px;
+  background: #1e2d45;
+  border-radius: 1px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.loading-fill {
+  height: 100%;
+  background: #00d4a0;
+  border-radius: 1px;
+  animation: loadfill 1.2s ease-in-out forwards;
+}
+
+@keyframes loadfill {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
+}
