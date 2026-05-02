@@ -42,22 +42,22 @@ export const Dashboard: React.FC = () => {
           { label: 'SIM Swap Risks', value: stats.simSwapAlerts, color: 'text-accent-400', icon: 'M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 0012 20c4.083 0 7.774-2.422 9.456-5.908M12 4a10.003 10.003 0 00-9.456 5.908M12 4v10M12 4a10.003 10.003 0 019.456 5.908M12 4v10m0 0l3.14-3.14M12 14l-3.14-3.14', trend: 'Critical' },
           { label: 'Zone Anomaly', value: stats.locationMismatchAlerts, color: 'text-suspicious', icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z', trend: 'Watchlist' },
         ].map((stat, i) => (
-          <div key={i} className="glass-card p-6 md:p-8 relative overflow-hidden group hover:border-brand-500/50 transition-all border-dark-800">
+          <div key={i} className="glass-card p-5 md:p-8 relative overflow-hidden group hover:border-brand-500/50 transition-all border-dark-800">
             <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity">
-               <svg className="w-24 h-24 md:w-28 md:h-28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={stat.icon} /></svg>
+               <svg className="w-20 h-20 md:w-28 md:h-28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={stat.icon} /></svg>
             </div>
-            <div className="flex justify-between items-start mb-3 md:mb-4">
-              <p className="text-dark-500 text-[10px] md:text-[11px] font-semibold uppercase tracking-wider">{stat.label}</p>
-              <span className={`text-[9px] md:text-[10px] font-medium px-2 py-0.5 rounded-md ${stat.color} bg-white/5`}>{stat.trend}</span>
+            <div className="flex justify-between items-start mb-2 md:mb-4">
+              <p className="text-dark-500 text-[9px] md:text-[11px] font-semibold uppercase tracking-wider">{stat.label}</p>
+              <span className={`text-[8px] md:text-[10px] font-medium px-2 py-0.5 rounded-md ${stat.color} bg-white/5`}>{stat.trend}</span>
             </div>
-            <p className={`text-4xl md:text-5xl font-bold ${stat.color}`}>{stat.value.toLocaleString()}</p>
+            <p className={`text-3xl md:text-5xl font-bold ${stat.color}`}>{stat.value.toLocaleString()}</p>
           </div>
         ))}
       </div>
 
       {/* Verification Logs Table */}
       <div className="glass-card overflow-hidden border-dark-800 shadow-2xl">
-        <div className="p-6 md:p-8 border-b border-dark-800 flex flex-col sm:flex-row justify-between items-center gap-6">
+        <div className="p-5 md:p-8 border-b border-dark-800 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="flex items-center gap-4">
             <h2 className="text-xl md:text-2xl font-bold text-white font-outfit">Audit Trail</h2>
             <div className="px-2 py-0.5 bg-dark-900 border border-dark-800 rounded text-[8px] md:text-[10px] text-dark-500 font-mono tracking-widest uppercase">Fintech Standard</div>

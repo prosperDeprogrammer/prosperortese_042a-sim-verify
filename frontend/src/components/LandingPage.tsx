@@ -30,15 +30,15 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
           The unified API for African SMEs to enable **one-click checkout security**, passwordless onboarding, and fraud-proof digital commerce using GSMA Open Gateway.
         </p>
 
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-3">
           <button
             onClick={onStart}
-            className="btn-primary w-full sm:w-auto px-10 py-5 text-sm md:text-base font-black uppercase tracking-widest group shadow-glow"
+            className="btn-primary w-full sm:w-auto group"
           >
             Start Verification Free
-            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
           </button>
-          <button onClick={onSandbox} className="btn-secondary text-sm md:text-base px-8 md:px-10 py-3 md:py-4">
+          <button onClick={onSandbox} className="btn-secondary w-full sm:w-auto">
             Enter API Sandbox
           </button>
         </div>
@@ -93,11 +93,15 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
           </div>
         </div>
 
-        {/* SME Success Stories Marquee */}
+        {/* SME Success Stories - High Impact */}
         <div className="mt-32 overflow-hidden relative">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-[10px] font-black uppercase tracking-widest mb-4">
+              <span className="flex h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulse"></span>
+              Live Impact Report
+            </div>
             <h2 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight">SME Success Stories</h2>
-            <p className="text-dark-400 text-sm md:text-lg max-w-2xl mx-auto px-6">Trusted by thousands of merchants across the continent.</p>
+            <p className="text-dark-400 text-sm md:text-lg max-w-2xl mx-auto px-6">Empowering thousands of merchants to trade securely across the continent.</p>
           </div>
 
           <div className="relative">
@@ -107,83 +111,33 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
 
             <div className="animate-marquee flex gap-6 md:gap-8 py-4">
               {[
-                {
-                  quote: "We used to lose 15% of our revenue to fake orders. With SimVerify Pro, we've cut fraud to zero while speeding up delivery.",
-                  author: "Fatima O.",
-                  role: "Founder, Lagos Logistics",
-                  initials: "FO",
-                  color: "from-brand-500 to-accent-500"
-                },
-                {
-                  quote: "Switching to SimVerify's background verification increased our checkout conversion by 28%. Friction-free and secure.",
-                  author: "Kofi M.",
-                  role: "CTO, Zanda Fintech",
-                  initials: "KM",
-                  color: "from-accent-500 to-brand-500"
-                },
-                {
-                  quote: "Finally, a fraud solution built for African markets. The SIM-swap detection is a literal game-changer for our security.",
-                  author: "Amara U.",
-                  role: "CEO, Kudi Payments",
-                  initials: "AU",
-                  color: "from-brand-600 to-indigo-500"
-                },
-                {
-                  quote: "The Trust Badge gives our customers confidence. They see SimVerify and they know their transactions are protected by the network.",
-                  author: "Chidi E.",
-                  role: "Founder, Nile Marketplace",
-                  initials: "CE",
-                  color: "from-emerald-500 to-brand-500"
-                }
-              ].concat([
-                {
-                  quote: "We used to lose 15% of our revenue to fake orders. With SimVerify Pro, we've cut fraud to zero while speeding up delivery.",
-                  author: "Fatima O.",
-                  role: "Founder, Lagos Logistics",
-                  initials: "FO",
-                  color: "from-brand-500 to-accent-500"
-                },
-                {
-                  quote: "Switching to SimVerify's background verification increased our checkout conversion by 28%. Friction-free and secure.",
-                  author: "Kofi M.",
-                  role: "CTO, Zanda Fintech",
-                  initials: "KM",
-                  color: "from-accent-500 to-brand-500"
-                },
-                {
-                  quote: "Finally, a fraud solution built for African markets. The SIM-swap detection is a literal game-changer for our security.",
-                  author: "Amara U.",
-                  role: "CEO, Kudi Payments",
-                  initials: "AU",
-                  color: "from-brand-600 to-indigo-500"
-                },
-                {
-                  quote: "The Trust Badge gives our customers confidence. They see SimVerify and they know their transactions are protected by the network.",
-                  author: "Chidi E.",
-                  role: "Founder, Nile Marketplace",
-                  initials: "CE",
-                  color: "from-emerald-500 to-brand-500"
-                }
-              ]).map((t, i) => (
-                <div key={i} className="w-[300px] md:w-[400px] flex-shrink-0 bg-dark-900/40 p-8 rounded-[2rem] border border-white/5 relative overflow-hidden group hover:border-brand-500/30 transition-all duration-500">
-                  <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
-                    <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.89543 14.9124 3 16.017 3H21.017C22.1216 3 23.017 3.89543 23.017 5V15C23.017 18.866 19.883 22 16.017 22H14.017V21ZM1.017 21V18C1.017 16.8954 1.91243 16 3.017 16H6.017C6.56928 16 7.017 15.5523 7.017 15V9C7.017 8.44772 6.56928 8 6.017 8H3.017C1.91243 8 1.017 7.10457 1.017 6V5C1.017 3.89543 1.91243 3 3.017 3H8.017C9.12157 3 10.017 3.89543 10.017 5V15C10.017 18.866 6.883 22 3.017 22H1.017V21Z" /></svg>
+                { name: 'Lagos Logistics', impact: 'Fraud reduced by 92%', tag: 'Logistics', color: 'text-brand-400', quote: "We cut fraud to zero while speeding up our deliveries." },
+                { name: 'Kigali Fintech', impact: '100% Account Security', tag: 'Fintech', color: 'text-accent-400', quote: "Instantly verified our users with telco-grade signals." },
+                { name: 'Nairobi Retail', impact: 'Zero OTP Interception', tag: 'E-commerce', color: 'text-safe', quote: "The SIM-swap detection is a literal game-changer." },
+                { name: 'Accra Pay', impact: 'Frictionless Onboarding', tag: 'Payments', color: 'text-brand-500', quote: "Increased checkout conversion by 28% overnight." },
+                { name: 'Joburg Delivery', impact: 'Verified Tracking', tag: 'Last Mile', color: 'text-suspicious', quote: "Finally, a fraud solution built for African markets." },
+                // Duplicate for loop
+                { name: 'Lagos Logistics', impact: 'Fraud reduced by 92%', tag: 'Logistics', color: 'text-brand-400', quote: "We cut fraud to zero while speeding up our deliveries." },
+                { name: 'Kigali Fintech', impact: '100% Account Security', tag: 'Fintech', color: 'text-accent-400', quote: "Instantly verified our users with telco-grade signals." },
+                { name: 'Nairobi Retail', impact: 'Zero OTP Interception', tag: 'E-commerce', color: 'text-safe', quote: "The SIM-swap detection is a literal game-changer." },
+                { name: 'Accra Pay', impact: 'Frictionless Onboarding', tag: 'Payments', color: 'text-brand-500', quote: "Increased checkout conversion by 28% overnight." },
+                { name: 'Joburg Delivery', impact: 'Verified Tracking', tag: 'Last Mile', color: 'text-suspicious', quote: "Finally, a fraud solution built for African markets." }
+              ].map((story, i) => (
+                <div key={i} className="flex-shrink-0 bg-dark-900/40 p-6 md:p-8 rounded-[2.5rem] border border-white/5 w-[280px] md:w-[350px] hover:border-brand-500/30 transition-all group">
+                  <div className="flex justify-between items-start mb-6">
+                    <span className={`text-[8px] font-black uppercase tracking-widest px-2 py-1 bg-white/5 rounded-md ${story.color}`}>{story.tag}</span>
+                    <svg className="w-5 h-5 text-dark-700" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V3L10.017 3V15C10.017 18.3137 12.7033 21 16.017 21H14.017ZM4.017 21L4.017 18C4.017 16.8954 4.91243 16 6.017 16H9.017C9.56928 16 10.017 15.5523 10.017 15V9C10.017 8.44772 9.56928 8 9.017 8H6.017C4.91243 8 4.017 7.10457 4.017 6V3L0.017 3V15C0.017 18.3137 2.7033 21 6.017 21H4.017Z" /></svg>
                   </div>
-                  <p className="text-sm md:text-base text-dark-100 italic leading-relaxed mb-6 relative z-10">
-                    "{t.quote}"
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.color} flex items-center justify-center font-bold text-white text-xs`}>{t.initials}</div>
-                    <div>
-                      <h4 className="text-white font-bold text-xs">{t.author}</h4>
-                      <p className="text-dark-500 text-[9px] uppercase tracking-widest font-black">{t.role}</p>
-                    </div>
-                  </div>
+                  <p className="text-dark-300 text-sm italic mb-4 leading-relaxed">"{story.quote}"</p>
+                  <p className="text-white font-bold text-base mb-1">{story.name}</p>
+                  <p className={`text-[11px] font-black ${story.color} uppercase tracking-widest`}>{story.impact}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
+
+
 
         {/* Pricing & Impact Sections */}
         <div className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">

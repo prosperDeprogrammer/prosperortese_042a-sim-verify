@@ -414,10 +414,10 @@ export const VerificationFlow: React.FC<{ initialStep?: Step, onComplete: () => 
               <button
                 onClick={handleCheckSim}
                 disabled={!phoneNumber}
-                className="btn-primary w-full py-4 text-sm tracking-wider font-semibold glow-effect disabled:opacity-30 disabled:cursor-not-allowed"
+                className="btn-primary w-full glow-effect disabled:opacity-30 disabled:cursor-not-allowed"
               >
-                Execute Global Scan
-                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                Verify Identity
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
               </button>
               <p className="mt-6 text-center text-dark-500 text-[11px] font-medium tracking-wide">Powered by CAMARA Open Gateway Standard</p>
             </div>
@@ -557,9 +557,9 @@ export const VerificationFlow: React.FC<{ initialStep?: Step, onComplete: () => 
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mb-10">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
                     {insightCards.map((item, i) => (
-                      <div key={i} className="bg-dark-900/40 p-4 md:p-5 rounded-2xl border border-white/5 hover:border-brand-500/30 transition-all relative overflow-hidden group">
+                      <div key={i} className="bg-dark-900/40 p-5 md:p-6 rounded-2xl border border-white/5 hover:border-brand-500/30 transition-all relative overflow-hidden group">
                         {i === 0 && (
                           <div className="absolute top-2 right-2 flex items-center gap-1">
                             <div className="w-1 h-1 bg-safe rounded-full animate-pulse"></div>
@@ -606,13 +606,13 @@ export const VerificationFlow: React.FC<{ initialStep?: Step, onComplete: () => 
               <div className="flex flex-col sm:flex-row gap-4 mt-3">
                 <button
                   onClick={() => { setStep('input'); setPhoneNumber(''); }}
-                  className="btn-primary flex-1 py-3 text-sm"
+                  className="btn-primary flex-1"
                 >
                   New Identity Scan
                 </button>
                 <button
                   onClick={() => onComplete()}
-                  className="btn-secondary px-8 text-xs font-bold uppercase tracking-widest"
+                  className="btn-primary flex-1"
                 >
                   View Dashboard
                 </button>

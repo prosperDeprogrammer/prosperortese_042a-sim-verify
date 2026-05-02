@@ -43,17 +43,9 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onCancel }) => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-500 rounded-full blur-[120px]"></div>
       </div>
 
-      {/* Left Side: Branding/Value Prop */}
-      <div className="lg:w-[45%] px-8 md:px-12 lg:px-16 pt-8 md:pt-12 pb-12 flex flex-col justify-between relative z-10 bg-dark-900/20 backdrop-blur-3xl border-r border-white/5">
+      {/* Left Side: Branding/Value Prop - Hidden on Mobile */}
+      <div className="hidden lg:flex lg:w-[45%] px-8 md:px-12 lg:px-16 pt-8 md:pt-12 pb-12 flex-col justify-between relative z-10 bg-dark-900/20 backdrop-blur-3xl border-r border-white/5">
         <div>
-          <button
-            onClick={onCancel}
-            className="flex items-center gap-2 text-dark-400 hover:text-white transition-colors mb-6 md:mb-10 group"
-          >
-            <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-            <span className="text-xs font-black uppercase tracking-widest">Back to Home</span>
-          </button>
-
           <div className="mb-8 md:mb-12">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 bg-brand-500 rounded-2xl flex items-center justify-center shadow-glow">
@@ -99,6 +91,15 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onCancel }) => {
       {/* Right Side: Form */}
       <div className="flex-1 flex items-start justify-center px-6 md:px-12 pt-6 md:pt-10 lg:pt-16 pb-12 relative z-10">
         <div className="w-full max-w-md animate-fade-in">
+          {/* Global Back Button for Mobile & Desktop */}
+          <button 
+            onClick={onCancel}
+            className="flex items-center gap-2 text-dark-500 hover:text-white transition-colors mb-8 group"
+          >
+            <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+            <span className="text-[11px] font-bold uppercase tracking-widest">Back to Home</span>
+          </button>
+
           {!isSignedUp ? (
             <>
               <div className="mb-6 text-center lg:text-left">
@@ -177,7 +178,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onCancel }) => {
                   <button
                     type="submit"
                     disabled={isProcessing}
-                    className="btn-primary w-full py-4 text-xs font-black uppercase tracking-[0.2em] mt-4"
+                    className="btn-primary w-full mt-2"
                   >
                     {isProcessing ? 'Securing Credentials...' : 'Register & Generate Key'}
                   </button>
@@ -220,7 +221,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onCancel }) => {
                     </div>
                   </div>
 
-                  <button type="submit" className="btn-primary w-full py-4 text-xs font-black uppercase tracking-[0.2em]">
+                  <button type="submit" className="btn-primary w-full">
                     Sign In to Dashboard
                   </button>
 
