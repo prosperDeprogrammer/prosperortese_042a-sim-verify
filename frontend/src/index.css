@@ -2,49 +2,137 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
+@layer base {
+  body {
+    @apply bg-dark-950 text-dark-50 font-inter antialiased overflow-x-hidden selection:bg-brand-500/30;
+    background-image:
+      radial-gradient(circle at 0% 0%, rgba(59, 98, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 0%, transparent 100%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-outfit font-black tracking-tighter;
+  }
 }
 
-html,
-body,
-#root {
-  height: 100%;
+@layer components {
+  .glass-card {
+    @apply bg-dark-900/30 backdrop-blur-xl border border-dark-800 rounded-[1.5rem] md:rounded-[2rem] shadow-2xl transition-all duration-500;
+  }
+
+  .btn-primary {
+    @apply bg-brand-600 hover:bg-brand-500 text-white font-medium py-2.5 md:py-3 px-5 md:px-6 rounded-lg md:rounded-xl transition-all duration-300 shadow-glow active:scale-[0.98] flex items-center justify-center gap-2 text-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-dark-900/50 hover:bg-dark-800 text-white font-medium py-2.5 md:py-3 px-5 md:px-6 rounded-lg md:rounded-xl transition-all duration-300 border border-dark-800 active:scale-[0.98] flex items-center justify-center gap-2 text-sm;
+  }
+
+  .input-field {
+    @apply bg-dark-950 border border-dark-800 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 outline-none transition-all duration-300 text-white text-base md:text-lg font-mono;
+  }
+
+  .status-badge {
+    @apply px-3 md:px-4 py-1 md:py-1.5 rounded-lg md:rounded-xl text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] border shadow-sm;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
-    Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  background: #03040c;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-* {
-  box-sizing: border-box;
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
 }
 
-/* ── Loading ── */
-.loading-bar {
-  height: 2px;
-  background: #1e2d45;
-  border-radius: 1px;
-  overflow: hidden;
-  margin-bottom: 28px;
+::-webkit-scrollbar-track {
+  @apply bg-dark-950;
 }
 
-.loading-fill {
-  height: 100%;
-  background: #00d4a0;
-  border-radius: 1px;
-  animation: loadfill 1.2s ease-in-out forwards;
+::-webkit-scrollbar-thumb {
+  @apply bg-dark-800 rounded-full border-2 border-dark-950 hover:bg-dark-700 transition-colors;
 }
 
-@keyframes loadfill {
+/* Animations */
+@keyframes fadeIn {
   from {
-    width: 0
+    opacity: 0;
+    transform: translateY(10px);
   }
 
   to {
-    width: 100%
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-effect {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.glow-effect {
+  position: relative;
+}
+
+.glow-effect::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, theme('colors.brand.500'), theme('colors.accent.500'), theme('colors.brand.500'));
+  filter: blur(10px);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: inherit;
+  background-size: 200% 200%;
+  animation: shimmer 3s infinite linear;
+}
+
+@media (min-width: 768px) {
+  .glow-effect::after {
+    inset: -4px;
+    filter: blur(20px);
+  }
+}
+
+.glow-effect:hover::after {
+  opacity: 0.4;
+}
+
+.text-brand-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-accent-400 to-brand-500;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

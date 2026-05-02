@@ -1,48 +1,63 @@
-const { evaluateUser } = require("../riskEngine");
-const { NIGERIAN_PHONE_REGEX } = require("../config/constants");
+const { getNetworkSignals } = require('../services/nokiaService');
+const { evaluateRisk } = require('../services/fraudEngine');
 
-exports.verifyUser = (req, res) => {
-  const { phone, lat, lng } = req.body;
+/**
+ * Main Verification Controller
+ * POST /verify-user
+ */
+async function verifyUser(req, res) {
+  try {
+    const { phoneNumber, location } = req.body;
 
-  // Auth check (simple check for sk_live_ prefix as per current logic)
-  const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith("Bearer sk_live_")) {
-    return res.status(401).json({ error: "Unauthorized. Missing or invalid Bearer API key." });
-  }
-
-  if (!phone) {
-    return res.status(400).json({ error: "phone number is required" });
-  }
-
-  // Normalize: Strip spaces, dashes, parentheses
-  let normalizedPhone = phone.replace(/[\s\-\(\)]/g, "");
-
-  // Strict check: Must only contain digits (and optional leading +)
-  if (!normalizedPhone.match(/^\+?\d+$/)) {
-    return res.status(400).json({ error: "Invalid characters detected. Phone numbers must only contain digits and a possible leading '+'." });
-  }
-
-  // Professional Global Validation (E.164 or local 10-11 digit)
-  const isGlobalFormat = normalizedPhone.startsWith("+");
-  const isLocalNigerian = normalizedPhone.match(/^0[7-9][0-1]\d{8}$/);
-  
-  if (!isGlobalFormat && !isLocalNigerian) {
-    if (normalizedPhone.length === 10 && !normalizedPhone.startsWith("0")) {
-       normalizedPhone = "0" + normalizedPhone;
-    } else if (normalizedPhone.length < 8) {
-       return res.status(400).json({ error: "Phone number is too short." });
-    } else if (normalizedPhone.length > 15) {
-       return res.status(400).json({ error: "Phone number is too long." });
+    if (!phoneNumber) {
+      return res.status(400).json({ error: "phoneNumber is required" });
     }
+
+    // 1. Normalize Phone Number (E.164)
+    let cleanPhone = String(phoneNumber).replace(/[^\d+]/g, "");
+    if (!cleanPhone.startsWith("+")) {
+      // Assuming Nigeria if no country code provided for demo simplicity
+      if (cleanPhone.startsWith("0")) cleanPhone = "+234" + cleanPhone.slice(1);
+      else cleanPhone = "+" + cleanPhone;
+    }
+
+    console.log(`[VERIFY-USER] Starting analysis for ${cleanPhone}`);
+
+    // 2. Call Nokia: Number Verification + SIM Swap + Location Verification (Theme 5)
+    const signals = await getNetworkSignals(cleanPhone, location);
+
+    const assessment = evaluateRisk(signals);
+
+    const response = {
+      phoneNumber: cleanPhone,
+      numberVerification: signals.numberVerification,
+      simSwap: signals.simSwap,
+      locationVerify: signals.locationVerify,
+      riskScore: assessment.riskScore,
+      riskLevel: assessment.riskLevel,
+      decision: assessment.decision,
+      insight: assessment.insight,
+      timestamp: signals.timestamp || new Date().toISOString(),
+      raw: signals
+    };
+
+    console.log(`[VERIFY-USER] Completed. Risk: ${assessment.riskLevel} (${assessment.riskScore})`);
+    return res.status(200).json(response);
+
+  } catch (err) {
+    console.error('[VERIFY-USER ERROR]', err);
+    const msg = err && err.message ? err.message : 'Unknown error';
+    if (msg.includes('NAC_') && msg.includes('https://')) {
+      return res.status(503).json({
+        error: 'Configuration',
+        message: msg
+      });
+    }
+    return res.status(500).json({
+      error: 'Internal Server Error',
+      message: 'An unexpected error occurred during fraud analysis.'
+    });
   }
+}
 
-  console.log(`[${new Date().toLocaleTimeString()}] 🔍 Verifying (Global Route): ${normalizedPhone}`);
-
-  const result = evaluateUser(normalizedPhone, lat, lng);
-
-  // Artificial delay to simulate network latency
-  setTimeout(() => {
-    console.log(`[${new Date().toLocaleTimeString()}] ✅ Result: ${result.risk_score} (${result.decision})`);
-    res.json(result);
-  }, 1200);
-};
+module.exports = { verifyUser };

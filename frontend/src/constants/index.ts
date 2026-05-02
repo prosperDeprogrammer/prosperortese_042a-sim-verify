@@ -1,4 +1,4 @@
-import { Decision, RiskScore, View } from "../types";
+import { Decision, RiskScore } from "../types";
 
 export const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
 
@@ -38,20 +38,11 @@ export const riskStyles = {
   }
 };
 
-export const navItems: Array<{ id: View; label: string }> = [
-  { id: "verify", label: "Fraud Checker" },
-  { id: "history", label: "Check History" },
-  { id: "docs", label: "API Docs" },
-  { id: "features", label: "Features" },
-  { id: "pricing", label: "Pricing" },
-  { id: "apikey", label: "Get API Key" },
-];
-
-export const demoCases = [
-  { phone: "09035315300", hint: "Validated Identity (Low Risk)", tone: "LOW" as RiskScore },
-  { phone: "08022222222", hint: "Active Account Takeover Attempt", tone: "HIGH" as RiskScore },
-  { phone: "08033333333", hint: "Unreachable / Stale Session", tone: "SUSPICIOUS" as RiskScore },
-  { phone: "08000000000", hint: "Phone Number Not Found", tone: "HIGH" as RiskScore },
+export const demoNumbers = [
+  "+36721234567",
+  "+36701234567",
+  "+36371234567",
+  "+99999991000",
 ];
 
 export function riskBadge(score: RiskScore) {
