@@ -9,8 +9,11 @@ import { ApiDocs } from './components/ApiDocs';
 import { ChatWidget } from './components/ChatWidget';
 import { AuthPage } from './components/AuthPage';
 
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+
 function App() {
-  const [currentPage, setCurrentPage] = useState<Step>('landing');
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isAppLoading, setIsAppLoading] = useState(true);
 
   useEffect(() => {
@@ -41,50 +44,46 @@ function App() {
     );
   }
 
-  const showNav = currentPage !== 'auth';
+  const showNav = location.pathname !== '/auth';
 
   return (
     <div className="min-h-screen flex flex-col">
-      {showNav && <Navbar onNavigate={(page) => setCurrentPage(page)} />}
+      {showNav && <Navbar onNavigate={(page) => navigate(`/${page === 'landing' ? '' : page}`)} />}
       
       <main className="flex-grow">
-        {currentPage === 'landing' && (
-          <LandingPage 
-            onStart={() => setCurrentPage('auth')} 
-            onSandbox={() => setCurrentPage('input')}
-          />
-        )}
+        <Routes>
+          <Route path="/" element={
+            <LandingPage 
+              onStart={() => navigate('/auth')} 
+              onSandbox={() => navigate('/gateway')}
+            />
+          } />
 
-        {currentPage === 'auth' && (
-          <AuthPage 
-            onSuccess={(key) => {
-              console.log('SME Authenticated with key:', key);
-              setCurrentPage('dashboard');
-            }}
-            onCancel={() => setCurrentPage('landing')}
-          />
-        )}
-        
-        {(currentPage === 'input' || currentPage === 'loading' || currentPage === 'result') && (
-          <VerificationFlow 
-            initialStep={currentPage === 'input' ? 'input' : undefined} 
-            onComplete={() => setCurrentPage('dashboard')} 
-          />
-        )}
-        
-        {currentPage === 'dashboard' && (
-          <Dashboard />
-        )}
-        
-        {currentPage === 'docs' && (
-          <ApiDocs />
-        )}
-
-        {currentPage === 'privacy' && <PrivacyPolicy />}
-        {currentPage === 'terms' && <TermsOfService />}
+          <Route path="/auth" element={
+            <AuthPage 
+              onSuccess={(key) => {
+                console.log('SME Authenticated with key:', key);
+                navigate('/dashboard');
+              }}
+              onCancel={() => navigate('/')}
+            />
+          } />
+          
+          <Route path="/gateway" element={
+            <VerificationFlow 
+              onComplete={() => navigate('/dashboard')} 
+              onNavigate={(page) => navigate(`/${page === 'landing' ? '' : page}`)}
+            />
+          } />
+          
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/docs" element={<ApiDocs />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+        </Routes>
       </main>
       
-      {showNav && <Footer onNavigate={(page) => setCurrentPage(page)} />}
+      {showNav && <Footer onNavigate={(page) => navigate(`/${page === 'landing' ? '' : page}`)} />}
       <ChatWidget />
     </div>
   );

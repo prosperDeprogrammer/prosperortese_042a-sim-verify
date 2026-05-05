@@ -35,7 +35,7 @@ export const runCamaraFraudEngine = async (phoneNumber: string, onApiProgress: (
     ];
 
     for (const step of steps) {
-      await new Promise(r => setTimeout(r, 900));
+      await new Promise(r => setTimeout(r, 50));
       const log: ApiLog = {
         api: step.label,
         timestamp: new Date().toISOString(),
@@ -48,8 +48,8 @@ export const runCamaraFraudEngine = async (phoneNumber: string, onApiProgress: (
     // Map backend response to VerificationResult
     const result: VerificationResult = {
       phoneNumber: data.phoneNumber,
-      status: data.riskLevel === 'LOW' ? 'VERIFIED' : (data.riskLevel === 'HIGH' ? 'HIGH RISK' : 'SUSPICIOUS'),
-      riskScore: data.riskLevel,
+      status: data.status || (data.riskLevel === 'LOW' ? 'VERIFIED' : (data.riskLevel === 'HIGH' ? 'HIGH RISK' : 'SUSPICIOUS')),
+      riskScore: data.riskLevel || 'LOW',
       simSwapStatus: data.simSwap?.swapped ? 'SWAPPED_RECENTLY' : 'CLEAN',
       locationMatch:
         data.locationVerify?.verificationResult === 'TRUE' ||
@@ -57,9 +57,9 @@ export const runCamaraFraudEngine = async (phoneNumber: string, onApiProgress: (
         data.location?.verificationResult === 'TRUE'
           ? 'MATCHED'
           : 'MISMATCH',
-      deviceStatus: 'ACTIVE',
-      networkProvider: 'Nokia NAC (RapidAPI)',
-      aiInsight: data.insight || 'Network analysis complete. No specific anomalies detected.',
+      deviceStatus: data.deviceStatus || 'ACTIVE',
+      networkProvider: data.networkProvider || 'Nokia NAC (RapidAPI)',
+      aiInsight: data.insight || data.aiInsight || 'Network analysis complete. No specific anomalies detected.',
       timestamp: data.timestamp || new Date().toISOString(),
       apiLogs: logs,
       rawResponse: data.raw,
@@ -95,7 +95,8 @@ export const getCamaraHistory = (): VerificationHistoryItem[] => {
     date: new Date(r.timestamp).toLocaleTimeString() + ' ' + new Date(r.timestamp).toLocaleDateString(),
     alerts: {
       simSwap: r.simSwapStatus === 'SWAPPED_RECENTLY',
-      locationMismatch: r.locationMatch === 'MISMATCH'
+      locationMismatch: r.locationMatch === 'MISMATCH',
+      numberMismatch: r.rawResponse?.numberVerification?.devicePhoneNumberVerified === false
     },
     rawResponse: r.rawResponse
   })).reverse();

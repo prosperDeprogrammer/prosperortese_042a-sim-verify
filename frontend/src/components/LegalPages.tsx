@@ -76,14 +76,14 @@ export const TermsOfService: React.FC = () => {
             <ul className="list-disc pl-5 mt-3 space-y-2 text-dark-400">
               <li>Surveillance, stalking, or unauthorized tracking of individuals.</li>
               <li>Marketing, lead generation, or unsolicited communications.</li>
-              <li>Any activity that violates the telecommunication regulations of the operating jurisdiction (e.g., NCC in Nigeria).</li>
+              <li>Any activity that violates the telecommunication regulations of the operating jurisdiction (e.g., local telecommunication authorities).</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-white mb-3">3. Compliance with CAMARA Standards</h2>
             <p>
-              Our infrastructure utilizes the GSMA Open Gateway and CAMARA project standards. Merchants must ensure that explicit end-user consent is obtained prior to triggering Network API calls, in accordance with local data protection laws (e.g., NDPA).
+              Our infrastructure utilizes the GSMA Open Gateway and CAMARA project standards. Merchants must ensure that explicit end-user consent is obtained prior to triggering Network API calls, in accordance with local data protection laws (e.g., NDPA, GDPR Africa).
             </p>
           </section>
 

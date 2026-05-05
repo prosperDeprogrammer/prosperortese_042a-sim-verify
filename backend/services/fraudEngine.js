@@ -47,7 +47,8 @@ function evaluateRisk(signals) {
   return {
     phoneNumber,
     status: riskScore < 30 ? 'VERIFIED' : (riskScore < 70 ? 'SUSPICIOUS' : 'HIGH RISK'),
-    riskScore: riskScore < 30 ? 'LOW' : (riskScore < 70 ? 'MEDIUM' : 'HIGH'),
+    riskScore: riskScore, // Return the actual numeric score
+    riskLevel: riskScore < 30 ? 'LOW' : (riskScore < 70 ? 'MEDIUM' : 'HIGH'), // Return the label for logs and frontend mapping
     simSwapStatus: signals.simSwap?.swapped ? 'SWAPPED_RECENTLY' : 'CLEAN',
     locationMatch: signals.locationVerify?.verificationResult === 'TRUE' ? 'MATCHED' : 'MISMATCH',
     deviceStatus: signals.deviceStatus?.connectivity === 'CONNECTED' ? 'ACTIVE' : 'INACTIVE',

@@ -35,8 +35,9 @@ async function verifyUser(req, res) {
       locationVerify: signals.locationVerify,
       riskScore: assessment.riskScore,
       riskLevel: assessment.riskLevel,
-      decision: assessment.decision,
-      insight: assessment.insight,
+      status: assessment.status, // Add status explicitly
+      decision: assessment.status, // Use status as the decision label
+      insight: assessment.aiInsight, // Use aiInsight as the insight text
       timestamp: signals.timestamp || new Date().toISOString(),
       raw: signals
     };

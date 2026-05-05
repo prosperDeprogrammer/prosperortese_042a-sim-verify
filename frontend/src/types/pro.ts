@@ -40,6 +40,7 @@ export interface VerificationHistoryItem {
   alerts: {
     simSwap: boolean;
     locationMismatch: boolean;
+    numberMismatch: boolean;
   };
   rawResponse?: any;
 }

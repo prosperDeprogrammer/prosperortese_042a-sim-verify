@@ -150,7 +150,7 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
             },
             {
               title: 'Growth Plan',
-              price: '$20',
+              price: '$60',
               period: '/month',
               desc: 'For scaling startups.',
               features: ['10,000 checks', 'Advanced risk insights + dashboard', 'Live chat support', 'AI insights'],
@@ -196,17 +196,12 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
             {[
               { name: 'GSMA', sub: 'OPEN GATEWAY', color: 'text-white' },
               { name: 'Nokia', sub: 'NAC PLATFORM', color: 'text-brand-500' },
-              { name: 'MTN', sub: 'NIGERIA', color: 'text-[#FFCC00]' },
-              { name: 'Airtel', sub: 'NIGERIA', color: 'text-[#FF0000]' },
-              { name: 'Glo', sub: 'NIGERIA', color: 'text-[#00FF00]' },
-              { name: '9mobile', sub: 'NIGERIA', color: 'text-[#006633]' },
-              // Duplicate for seamless loop
-              { name: 'GSMA', sub: 'OPEN GATEWAY', color: 'text-white' },
-              { name: 'Nokia', sub: 'NAC PLATFORM', color: 'text-brand-500' },
-              { name: 'MTN', sub: 'NIGERIA', color: 'text-[#FFCC00]' },
-              { name: 'Airtel', sub: 'NIGERIA', color: 'text-[#FF0000]' },
-              { name: 'Glo', sub: 'NIGERIA', color: 'text-[#00FF00]' },
-              { name: '9mobile', sub: 'NIGERIA', color: 'text-[#006633]' }
+              { name: 'MTN', sub: 'GLOBAL AFRICA', color: 'text-[#FFCC00]' },
+              { name: 'Airtel', sub: 'CENTRAL AFRICA', color: 'text-[#FF0000]' },
+              { name: 'Vodacom', sub: 'SOUTH AFRICA', color: 'text-[#E60000]' },
+              { name: 'Safaricom', sub: 'EAST AFRICA', color: 'text-[#49AA4F]' },
+              { name: 'Orange', sub: 'WEST AFRICA', color: 'text-[#FF7900]' },
+              { name: 'Glo', sub: 'WEST AFRICA', color: 'text-[#00FF00]' }
             ].map((partner, i) => (
               <div key={i} className="flex items-center gap-3 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-default">
                 <span className={`${partner.color} font-black tracking-tighter text-xl md:text-2xl italic`}>{partner.name}</span>

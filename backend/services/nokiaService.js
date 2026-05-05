@@ -1,4 +1,12 @@
 const axios = require('axios');
+const https = require('https');
+
+// Connection pooling: reuse TCP/TLS connections to RapidAPI
+const agent = new https.Agent({
+  keepAlive: true,
+  maxSockets: 10,
+  timeout: 60000
+});
 
 /**
  * NOKIA NETWORK-AS-CODE (CAMARA) SERVICE
@@ -55,8 +63,9 @@ async function getNetworkSignals(phoneNumber, locationData = null) {
     return cache.get(cacheKey).data;
   }
 
+
   const apiKey = process.env.NAC_API_KEY;
-  const apiHost = process.env.NAC_RAPIDAPI_HOST;
+  const apiHost = process.env.NAC_RAPIDAPI_HOST || 'network-as-code.p.rapidapi.com';
   const timeout = parseInt(process.env.NAC_TIMEOUT_MS) || 8000;
 
   const mockNumberVerification = process.env.NAC_MOCK_NUMBER_VERIFICATION === 'true';
@@ -88,13 +97,13 @@ async function getNetworkSignals(phoneNumber, locationData = null) {
       : (async () => {
         if (numberVerifyIsShare) {
           console.log(`[LIVE API] GET ${numberVerifyUrl}`);
-          const res = await axios.get(numberVerifyUrl, { headers, timeout });
+          const res = await axios.get(numberVerifyUrl, { headers, timeout, httpsAgent: agent });
           console.log(`[NOKIA RESPONSE] NumberVerify:`, JSON.stringify(res.data, null, 2));
           return res;
         }
         const body = { phoneNumber };
         console.log(`[LIVE API] POST ${numberVerifyUrl} | Payload:`, JSON.stringify(body));
-        const res = await axios.post(numberVerifyUrl, body, { headers, timeout });
+        const res = await axios.post(numberVerifyUrl, body, { headers, timeout, httpsAgent: agent });
         console.log(`[NOKIA RESPONSE] NumberVerify:`, JSON.stringify(res.data, null, 2));
         return res;
       })().catch(toErrorPayload),
@@ -102,7 +111,7 @@ async function getNetworkSignals(phoneNumber, locationData = null) {
     simSwap: (async () => {
       const body = { phoneNumber: phoneNumber, maxAge: 240 };
       console.log(`[LIVE API] POST ${simSwapUrl} | Payload:`, JSON.stringify(body));
-      const res = await axios.post(simSwapUrl, body, { headers, timeout });
+      const res = await axios.post(simSwapUrl, body, { headers, timeout, httpsAgent: agent });
       console.log(`[NOKIA RESPONSE] SimSwap:`, JSON.stringify(res.data, null, 2));
       return res;
     })().catch(toErrorPayload),
@@ -126,7 +135,7 @@ async function getNetworkSignals(phoneNumber, locationData = null) {
           }
         };
         console.log(`[LIVE API] POST ${locationVerifyUrl} | Payload:`, JSON.stringify(body));
-        const res = await axios.post(locationVerifyUrl, body, { headers, timeout });
+        const res = await axios.post(locationVerifyUrl, body, { headers, timeout, httpsAgent: agent });
         console.log(`[NOKIA RESPONSE] LocationVerify:`, JSON.stringify(res.data, null, 2));
         return res;
       })().catch(toErrorPayload)
@@ -145,7 +154,7 @@ async function getNetworkSignals(phoneNumber, locationData = null) {
       locationVerify: locVRes.data,
       timestamp: new Date().toISOString(),
       /** If this is missing in the Developer Console, you are not hitting this codebase (no locationRetrieve in v2). */
-      _responseBundle: 'theme5-v2-three-apis',
+      // _responseBundle: 'theme5-v2-three-apis',
       // _mockNumberVerification: mockNumberVerification
     };
 

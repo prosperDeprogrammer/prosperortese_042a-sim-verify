@@ -11,7 +11,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onCancel }) => {
   const [email, setEmail] = useState('');
   const [businessName, setBusinessName] = useState('');
   const [businessType, setBusinessType] = useState('E-commerce');
-  const [country, setCountry] = useState('Nigeria');
+  const [country, setCountry] = useState('Select Country');
   const [existingKey, setExistingKey] = useState('');
   const [isSignedUp, setIsSignedUp] = useState(false);
   const [generatedKey, setGeneratedKey] = useState('');
@@ -163,6 +163,10 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onCancel }) => {
                           <option>Kenya</option>
                           <option>Ghana</option>
                           <option>South Africa</option>
+                          <option>Rwanda</option>
+                          <option>Senegal</option>
+                          <option>Egypt</option>
+                          <option>Ethiopia</option>
                         </select>
                       </div>
                     </div>

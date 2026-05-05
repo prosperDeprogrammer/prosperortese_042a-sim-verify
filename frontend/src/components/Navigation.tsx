@@ -38,7 +38,7 @@ export const Navbar: React.FC<{ onNavigate: (page: any) => void }> = ({ onNaviga
           <button onClick={() => handleNavigate('docs')} className="text-dark-400 hover:text-brand-400 transition-colors font-medium text-sm tracking-wide">Docs</button>
 
           <div className="flex items-center gap-4 ml-4">
-            <button onClick={() => handleNavigate('input')} className="text-brand-400 border border-brand-500/30 hover:bg-brand-500/10 px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
+            <button onClick={() => handleNavigate('gateway')} className="text-brand-400 border border-brand-500/30 hover:bg-brand-500/10 px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
               API Sandbox
             </button>
             <button onClick={() => handleNavigate('auth')} className="btn-primary px-8 py-2.5 font-black text-xs uppercase tracking-widest">
@@ -81,7 +81,7 @@ export const Navbar: React.FC<{ onNavigate: (page: any) => void }> = ({ onNaviga
               Dashboard
             </button>
             <button
-              onClick={() => handleNavigate('input')}
+              onClick={() => handleNavigate('gateway')}
               className="w-full text-center p-4 rounded-xl border border-brand-500/30 text-brand-400 font-black tracking-widest text-xs uppercase"
             >
               API Sandbox

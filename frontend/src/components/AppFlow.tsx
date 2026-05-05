@@ -102,8 +102,8 @@ const CodeBlock: React.FC<{ code: string, lang: string }> = ({ code, lang }) => 
 };
 
 // --- Verification Flow ---
-export const VerificationFlow: React.FC<{ initialStep?: Step, onComplete: () => void }> = ({ initialStep = 'input', onComplete }) => {
-  const [step, setStep] = useState<Step>(initialStep);
+export const VerificationFlow: React.FC<{ initialStep?: Step; onComplete: () => void; onNavigate?: (page: any) => void }> = ({ initialStep, onComplete, onNavigate }) => {
+  const [step, setStep] = useState<Step>(initialStep || 'input');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [error, setError] = useState('');
   const [result, setResult] = useState<VerificationResult | null>(null);
@@ -111,6 +111,14 @@ export const VerificationFlow: React.FC<{ initialStep?: Step, onComplete: () => 
   const [loadingText, setLoadingText] = useState('Connecting...');
   const [resultTab, setResultTab] = useState<'insights' | 'developer'>('insights');
   const inputSectionRef = useRef<HTMLDivElement>(null);
+
+  const toggleDocs = () => {
+    if (onNavigate) {
+      onNavigate('docs');
+    } else {
+      setStep(step === 'docs' ? 'input' : 'docs');
+    }
+  };
 
   const insightCards = useMemo(
     () => (result ? buildTheme5InsightCards(result) : []),
@@ -145,7 +153,7 @@ export const VerificationFlow: React.FC<{ initialStep?: Step, onComplete: () => 
         setLoadingText(loadingTexts[textIdx]);
         textIdx++;
       }
-    }, 900);
+    }, 500);
 
     try {
       const res = await runCamaraFraudEngine(phoneNumber, (log) => {
@@ -191,153 +199,70 @@ export const VerificationFlow: React.FC<{ initialStep?: Step, onComplete: () => 
       {step === 'docs' && (
         <div className="space-y-8 animate-fade-in pb-20">
           <div className="glass-card p-8 md:p-12 border-t-2 border-t-brand-500">
-            <h2 className="text-3xl font-bold text-white mb-4 tracking-tight">Developer Documentation</h2>
-            <p className="text-dark-400 mb-8 max-w-2xl text-sm leading-relaxed">
-              Integrate SimVerify Pro's telecom intelligence into your platform. Our API connects directly to global carrier networks, providing real-time SIM ownership and swap signals.
+            <h2 className="text-3xl font-bold text-white mb-4 tracking-tight">Technical Integration</h2>
+            <p className="text-dark-400 mb-10 max-w-2xl text-sm leading-relaxed">
+              Integrate the signals into your SME platform using our carrier-grade API endpoints.
+              These snippets use the real-time Nokia NAC gateway.
             </p>
 
             <div className="space-y-12">
-              <section>
-                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="w-6 h-6 bg-brand-500/20 text-brand-500 rounded-md flex items-center justify-center text-xs">1</span>
-                  API Authentication
-                </h3>
-                <div className="bg-dark-950 p-6 rounded-2xl border border-dark-800">
-                  <p className="text-dark-300 text-sm mb-4">Secure your requests by including your production API key in the request headers.</p>
-                  <code className="text-brand-400 text-xs font-mono bg-black/50 px-3 py-1.5 rounded-lg border border-dark-800">X-API-Key: YOUR_PRODUCTION_KEY</code>
+              <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <h3 className="text-xs font-black text-brand-500 uppercase tracking-widest flex items-center gap-2">
+                    <span className="w-5 h-5 bg-brand-500/10 rounded flex items-center justify-center text-[10px]">1</span>
+                    Node.js Implementation
+                  </h3>
+                  <pre className="bg-[#0D1117] p-5 rounded-2xl border border-dark-800 overflow-x-auto text-[10px] font-mono text-brand-300 leading-loose">
+                    <code>{`const axios = require('axios');
+
+// Check SIM Swap + Identity
+const response = await axios.post(
+  'https://api.simverify.pro/v1/verify', 
+  { phoneNumber: '${phoneNumber || '2348000000000'}' },
+  { headers: { 'Authorization': 'Bearer <KEY>' } }
+);
+
+if (response.data.status === 'HIGH RISK') {
+  blockTransaction(); // AI mitigation
+}`}</code>
+                  </pre>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xs font-black text-safe uppercase tracking-widest flex items-center gap-2">
+                    <span className="w-5 h-5 bg-safe/10 rounded flex items-center justify-center text-[10px]">2</span>
+                    cURL Request
+                  </h3>
+                  <pre className="bg-[#0D1117] p-5 rounded-2xl border border-dark-800 overflow-x-auto text-[10px] font-mono text-safe leading-loose">
+                    <code>{`curl -X POST https://api.simverify.pro/v1/verify \\
+  -H "Authorization: Bearer <KEY>" \\
+  -H "Content-Type: application/json" \\
+  -d '{"phoneNumber": "${phoneNumber || '2348000000000'}"}'`}</code>
+                  </pre>
                 </div>
               </section>
 
-              <section>
-                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="w-6 h-6 bg-brand-500/20 text-brand-500 rounded-md flex items-center justify-center text-xs">2</span>
-                  Core Verification Endpoint
-                </h3>
-                <div className="bg-dark-950 p-6 rounded-2xl border border-dark-800 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="bg-safe/20 text-safe text-[10px] font-bold px-2 py-0.5 rounded">POST</span>
-                    <code className="text-white text-xs font-mono">https://api.simverify.pro/v1/verify</code>
-                  </div>
-                  <div className="pt-4 border-t border-dark-900">
-                    <p className="text-dark-500 text-[10px] font-bold uppercase mb-2">Request Body (JSON)</p>
-                    <pre className="text-brand-300 text-xs font-mono">
-                      {`{
-                          "phone": "+2348030000000",
-                          "country": "NG"
-                        }`}
-                    </pre>
-                  </div>
+              <section className="p-8 rounded-3xl bg-gradient-to-br from-brand-600/10 to-accent-600/10 border border-brand-500/20">
+                <h4 className="text-white font-bold mb-4">Supported Languages & SDKs</h4>
+                <p className="text-dark-400 text-xs mb-6">Our REST API is compatible with any language capable of making HTTP requests.</p>
+                <div className="flex flex-wrap gap-4">
+                  {['Node.js', 'Python', 'PHP', 'Go', 'Ruby', 'Java', 'C#', 'Rust', 'Swift'].map(lang => (
+                    <span key={lang} className="bg-dark-950/50 text-dark-300 text-[10px] px-3 py-1 rounded-full border border-dark-800 font-bold">{lang}</span>
+                  ))}
                 </div>
               </section>
+            </div>
 
-              <section>
-                <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
-                  <span className="w-6 h-6 bg-brand-500/20 text-brand-500 rounded-md flex items-center justify-center text-xs">3</span>
-                  Integration Examples
-                </h3>
-                <div className="grid grid-cols-1 gap-8">
-                  <CodeBlock
-                    lang="Node.js (Axios)"
-                    code={`const axios = require('axios');
-
-                    const verifyIdentity = async (phone) => {
-                      try {
-                        const response = await axios.post(
-                          'https://api.simverify.pro/v1/verify',
-                          { phone: phone },
-                          { headers: { 'X-API-Key': 'YOUR_KEY' } }
-                        );
-                        console.log('Risk Status:', response.data.status);
-                        console.log('SIM Swapped:', response.data.simSwapStatus);
-                      } catch (error) {
-                        console.error('Security Gate Error:', error);
-                      }
-                    };`}
-                  />
-
-                  <CodeBlock
-                    lang="PHP (cURL)"
-                    code={`<?php
-                    $ch = curl_init('https://api.simverify.pro/v1/verify');
-                    $payload = json_encode(['phone' => '+2348030000000']);
-
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                        'Content-Type: application/json',
-                        'X-API-Key: YOUR_KEY'
-                    ]);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-                    $response = curl_exec($ch);
-                    curl_close($ch);
-
-                    $data = json_decode($response, true);
-                    echo "Risk Level: " . $data['riskLevel'];
-                    ?>`}
-                  />
-
-                  <CodeBlock
-                    lang="Python (Requests)"
-                    code={`import requests
-
-                def check_fraud(phone_number):
-                    url = "https://api.simverify.pro/v1/verify"
-                    headers = {"X-API-Key": "YOUR_KEY"}
-                    data = {"phone": phone_number}
-
-                    response = requests.post(url, json=data, headers=headers)
-                    
-                    if response.status_code == 200:
-                        result = response.json()
-                        print(f"Status: {result['status']}")
-                    else:
-                        print("API Error")`}
-                  />
-                </div>
-              </section>
-
-              <section>
-                <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
-                  <span className="w-6 h-6 bg-brand-500/20 text-brand-500 rounded-md flex items-center justify-center text-xs">4</span>
-                  No-Code Integration (SME Widget)
-                </h3>
-                <div className="bg-dark-950 p-8 rounded-2xl border border-brand-500/10 space-y-6">
-                  <p className="text-dark-300 text-sm">
-                    Don't have a developer? Use our drop-in widget to add a security gate to your checkout page in seconds.
-                  </p>
-
-                  <div className="space-y-4">
-                    <p className="text-[10px] font-black text-dark-500 uppercase tracking-widest">1. Add Script to Head</p>
-                    <CodeBlock
-                      lang="HTML"
-                      code={`<script src="https://cdn.simverify.pro/v1/widget.js"></script>`}
-                    />
-                  </div>
-
-                  <div className="space-y-4">
-                    <p className="text-[10px] font-black text-dark-500 uppercase tracking-widest">2. Add Security Gate Button</p>
-                    <CodeBlock
-                      lang="HTML"
-                      code={`<div id="simverify-gate" 
-     data-key="YOUR_PUBLIC_KEY" 
-     data-on-success="handlePayment">
-</div>`}
-                    />
-                  </div>
-                </div>
-              </section>
-
-              <section>
-                <div className="p-8 rounded-3xl bg-gradient-to-br from-brand-600/10 to-accent-600/10 border border-brand-500/20">
-                  <h4 className="text-white font-bold mb-4">Supported Languages & SDKs</h4>
-                  <p className="text-dark-400 text-xs mb-6">Our REST API is compatible with any language capable of making HTTP requests.</p>
-                  <div className="flex flex-wrap gap-4">
-                    {['Node.js', 'Python', 'PHP', 'Go', 'Ruby', 'Java', 'C#', 'Rust', 'Swift'].map(lang => (
-                      <span key={lang} className="bg-dark-950/50 text-dark-300 text-[10px] px-3 py-1 rounded-full border border-dark-800 font-bold">{lang}</span>
-                    ))}
-                  </div>
-                </div>
-              </section>
+            <div className="mt-10 pt-8 border-t border-dark-800 flex items-center justify-between">
+              <p className="text-dark-500 text-[10px] font-medium italic">
+                * All endpoints are secured by Nokia Network-as-Code.
+              </p>
+              <button
+                onClick={() => onNavigate && onNavigate('docs')}
+                className="text-brand-400 text-[10px] font-black uppercase tracking-widest hover:text-brand-300 transition-colors"
+              >
+                View Full API Reference →
+              </button>
             </div>
           </div>
         </div>
@@ -475,16 +400,17 @@ export const VerificationFlow: React.FC<{ initialStep?: Step, onComplete: () => 
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] text-dark-500 uppercase tracking-widest font-bold">Identity:</span>
-                    <span className="text-[11px] font-mono text-brand-400">+{result.phoneNumber}</span>
+                    <span className="text-[11px] font-mono text-brand-400">{result.phoneNumber}</span>
                   </div>
                 </div>
 
-                <div className={`px-4 py-2 rounded-xl text-sm font-black border-2 ${result.status === 'VERIFIED' ? 'bg-safe/5 text-safe border-safe/20' :
-                  result.status === 'HIGH RISK' ? 'bg-danger/5 text-danger border-danger/20' :
-                    'bg-suspicious/5 text-suspicious border-suspicious/20'
+                <span className={`px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest border shadow-lg flex items-center gap-2 ${result.status === 'VERIFIED' ? 'bg-safe/10 text-safe border-safe/20' :
+                  result.status === 'HIGH RISK' ? 'bg-danger/10 text-danger border-danger/20' :
+                    'bg-suspicious/10 text-suspicious border-suspicious/20'
                   }`}>
-                  {result.status}
-                </div>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+                  {result.status === 'HIGH RISK' ? 'BLOCKED' : result.status}
+                </span>
               </div>
 
               {/* Tab Navigation */}
@@ -500,7 +426,7 @@ export const VerificationFlow: React.FC<{ initialStep?: Step, onComplete: () => 
                   onClick={() => setResultTab('developer')}
                   className={`pb-4 text-[10px] font-black uppercase tracking-[0.2em] transition-all relative ${resultTab === 'developer' ? 'text-brand-500' : 'text-dark-500 hover:text-dark-300'}`}
                 >
-                  Developer Console
+                  Raw Response
                   {resultTab === 'developer' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-500 animate-fade-in"></div>}
                 </button>
               </div>
@@ -634,17 +560,12 @@ export const VerificationFlow: React.FC<{ initialStep?: Step, onComplete: () => 
             {[
               { name: 'GSMA', sub: 'OPEN GATEWAY', color: 'text-white' },
               { name: 'Nokia', sub: 'NAC PLATFORM', color: 'text-brand-500' },
-              { name: 'MTN', sub: 'NIGERIA', color: 'text-[#FFCC00]' },
-              { name: 'Airtel', sub: 'NIGERIA', color: 'text-[#FF0000]' },
-              { name: 'Glo', sub: 'NIGERIA', color: 'text-[#00FF00]' },
-              { name: '9mobile', sub: 'NIGERIA', color: 'text-[#006633]' },
-              // Duplicate for seamless loop
-              { name: 'GSMA', sub: 'OPEN GATEWAY', color: 'text-white' },
-              { name: 'Nokia', sub: 'NAC PLATFORM', color: 'text-brand-500' },
-              { name: 'MTN', sub: 'NIGERIA', color: 'text-[#FFCC00]' },
-              { name: 'Airtel', sub: 'NIGERIA', color: 'text-[#FF0000]' },
-              { name: 'Glo', sub: 'NIGERIA', color: 'text-[#00FF00]' },
-              { name: '9mobile', sub: 'NIGERIA', color: 'text-[#006633]' }
+              { name: 'MTN', sub: 'GLOBAL AFRICA', color: 'text-[#FFCC00]' },
+              { name: 'Airtel', sub: 'CENTRAL AFRICA', color: 'text-[#FF0000]' },
+              { name: 'Vodacom', sub: 'SOUTH AFRICA', color: 'text-[#E60000]' },
+              { name: 'Safaricom', sub: 'EAST AFRICA', color: 'text-[#49AA4F]' },
+              { name: 'Orange', sub: 'WEST AFRICA', color: 'text-[#FF7900]' },
+              { name: 'Glo', sub: 'WEST AFRICA', color: 'text-[#00FF00]' }
             ].map((partner, i) => (
               <div key={i} className="flex items-center gap-3 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-default">
                 <span className={`${partner.color} font-black tracking-tighter text-xl md:text-2xl italic`}>{partner.name}</span>
