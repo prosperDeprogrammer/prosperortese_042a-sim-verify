@@ -150,7 +150,7 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
             },
             {
               title: 'Growth Plan',
-              price: '$60',
+              price: '$40',
               period: '/month',
               desc: 'For scaling startups.',
               features: ['10,000 checks', 'Advanced risk insights + dashboard', 'Live chat support', 'AI insights'],
