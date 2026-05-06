@@ -152,7 +152,7 @@ async function getNetworkSignals(phoneNumber, locationData = null) {
       numberVerification: numRes.data,
       simSwap: swapRes.data,
       locationVerify: locVRes.data,
-      timestamp: new Date().toISOString(),
+      // timestamp: new Date().toISOString(),
       /** If this is missing in the Developer Console, you are not hitting this codebase (no locationRetrieve in v2). */
       // _responseBundle: 'theme5-v2-three-apis',
       // _mockNumberVerification: mockNumberVerification
