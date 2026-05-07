@@ -33,13 +33,17 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
         <div className="flex flex-col sm:flex-row justify-center gap-3">
           <button
             onClick={onStart}
-            className="btn-primary w-full sm:w-auto group"
+            className="w-full sm:w-auto px-10 
+                                py-3 bg-brand-600 text-white rounded-2xl text-[13px]
+                                 font-bold shadow-xl shadow-slate-900/20 hover:-translate-y-1 
+                                 transition-all flex items-center justify-center gap-2 
+                                 group tracking-[2px] uppercase"
           >
-            Start Verification Free
+            Start  Free
             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
           </button>
           <button onClick={onSandbox} className="btn-secondary w-full sm:w-auto">
-            Enter API Sandbox
+            API Sandbox
           </button>
         </div>
       </div>
