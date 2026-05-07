@@ -10,7 +10,7 @@
 ## 💎 The Problem: The "Trust Gap" for SMEs
 Digital commerce in Africa is hindered by fraud—specifically **SIM-swap account takeovers** and **OTP interception**. Small businesses lack the budget for expensive enterprise security, leaving them and their customers vulnerable.
 
-## 💡 The Solution: SimVerify Pro (Theme 5)
+## 💡 The Solution: SimVerify Pro (Theme 5: SME Enablement & Digital Commerce Growth)
 Aligned with **SME Enablement & Digital Commerce Growth**, we provide a simple, plug-and-play API that gives SMEs access to telco-level security signals.
 - **Passwordless Onboarding**: Verify users silently via their mobile network.
 - **SIM-Swap Detection**: Block transactions if a user's SIM was recently swapped.
