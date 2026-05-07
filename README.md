@@ -16,7 +16,6 @@ Aligned with **SME Enablement & Digital Commerce Growth**, we provide a simple, 
 - **SIM-Swap Detection**: Block transactions if a user's SIM was recently swapped.
 - **Location Validation**: Ensure a merchant's checkout is happening where the customer actually is.
 
----
 
 ## 🎡 Judge's 1-Minute Demo Guide
 Once you are in the **API Sandbox**, use these "Trust Sandbox" numbers to see the engine in action:
@@ -28,7 +27,7 @@ Once you are in the **API Sandbox**, use these "Trust Sandbox" numbers to see th
 3.  **The 'Location Mismatch'**: Use `99999991003`
     - *Result*: **SUSPICIOUS**. Flagged because the transaction location doesn't match the mobile device.
 
----
+
 
 ## 🛠️ High-Fidelity Tech Stack
 - **API Engine**: CAMARA (Nokia Network-as-Code Blueprint)
