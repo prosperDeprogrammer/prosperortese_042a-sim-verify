@@ -42,37 +42,42 @@ Once you are in the **API Sandbox**, use these "Trust Sandbox" numbers to see th
 
 ---
 
-## 🛠️ Getting Started
+## ⚙️ Local Development Setup
 
-### 1. Prerequisites
-- **Node.js**: v18 or higher
-- **npm**: v9 or higher
+Follow these steps to spin up the SimVerify Pro stack locally.
 
-### 2. Installation
+### Prerequisites
+- **Node.js**: v18.x or higher
+- **npm**: v9.x or higher
+
+### 📦 Installation
+
 ```bash
-# Install Backend Dependencies
+# Setup Backend
 cd backend
 npm install
 
-# Install Frontend Dependencies
+# Setup Frontend
 cd ../frontend
 npm install
 ```
 
-### 3. Configuration
-1. Navigate to the `backend` directory.
-2. Create a `.env` file: `cp .env.example .env`.
-3. Add your **Nokia Network-as-Code** API credentials to the `.env` file.
+### 🔑 Configuration
+1. Navigate to the `/backend` directory.
+2. Create a `.env` file from the provided template: `cp .env.example .env`.
+3. Add your **Nokia Network-as-Code** API keys and endpoints to the `.env` file.
 
-### 4. Running the App
+### 🚀 Running the App
 
-**Start Backend (Terminal 1)**
+You will need two terminal instances:
+
+**1. Start the Backend (API Engine)**
 ```bash
 cd backend
 npm run dev
 ```
 
-**Start Frontend (Terminal 2)**
+**2. Start the Frontend (Security Dashboard)**
 ```bash
 cd frontend
 npm start
