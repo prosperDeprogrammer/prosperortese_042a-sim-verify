@@ -43,6 +43,44 @@ Once you are in the **API Sandbox**, use these "Trust Sandbox" numbers to see th
 
 ---
 
+## 🛠️ Getting Started
+
+### 1. Prerequisites
+- **Node.js**: v18 or higher
+- **npm**: v9 or higher
+
+### 2. Installation
+```bash
+# Install Backend Dependencies
+cd backend
+npm install
+
+# Install Frontend Dependencies
+cd ../frontend
+npm install
+```
+
+### 3. Configuration
+1. Navigate to the `backend` directory.
+2. Create a `.env` file: `cp .env.example .env`.
+3. Add your **Nokia Network-as-Code** API credentials to the `.env` file.
+
+### 4. Running the App
+
+**Start Backend (Terminal 1)**
+```bash
+cd backend
+npm run dev
+```
+
+**Start Frontend (Terminal 2)**
+```bash
+cd frontend
+npm start
+```
+
+---
+
 ## 🚀 The Vision
 SimVerify Pro is designed to be **"Network Agnostic."** By using the CAMARA standard, we can scale across every major carrier in Africa (MTN, Airtel, Safaricom) with a single codebase. We aren't just building a tool; we are building the **Trust Layer for African Digital Commerce.**
 
