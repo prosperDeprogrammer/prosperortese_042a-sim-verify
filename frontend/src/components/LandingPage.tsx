@@ -55,7 +55,7 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
         <div className="mt-32 text-left">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight">How SimVerify Protects Fintech Logins</h2>
-            <p className="text-dark-400 text-sm md:text-lg max-w-2xl mx-auto">One API call. Three network signals. A single fraud decision — before the account is taken over.</p>
+            <p className="text-dark-400 text-sm md:text-lg max-w-2xl mx-auto">One API call. Three network signals. A single fraud decision  before the account is taken over.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
