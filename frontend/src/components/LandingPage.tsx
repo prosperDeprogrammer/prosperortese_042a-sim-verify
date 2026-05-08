@@ -120,17 +120,21 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
 
             <div className="animate-marquee flex gap-6 md:gap-8 py-4">
               {[
-                { name: 'Lagos Logistics', impact: 'Fraud reduced by 92%', tag: 'Logistics', color: 'text-brand-400', quote: "We cut fraud to zero while speeding up our deliveries." },
-                { name: 'Kigali Fintech', impact: '100% Account Security', tag: 'Fintech', color: 'text-accent-400', quote: "Instantly verified our users with telco-grade signals." },
-                { name: 'Nairobi Retail', impact: 'Zero OTP Interception', tag: 'E-commerce', color: 'text-safe', quote: "The SIM-swap detection is a literal game-changer." },
-                { name: 'Accra Pay', impact: 'Frictionless Onboarding', tag: 'Payments', color: 'text-brand-500', quote: "Increased checkout conversion by 28% overnight." },
-                { name: 'Joburg Delivery', impact: 'Verified Tracking', tag: 'Last Mile', color: 'text-suspicious', quote: "Finally, a fraud solution built for African markets." },
-                // Duplicate for loop
-                { name: 'Lagos Logistics', impact: 'Fraud reduced by 92%', tag: 'Logistics', color: 'text-brand-400', quote: "We cut fraud to zero while speeding up our deliveries." },
-                { name: 'Kigali Fintech', impact: '100% Account Security', tag: 'Fintech', color: 'text-accent-400', quote: "Instantly verified our users with telco-grade signals." },
-                { name: 'Nairobi Retail', impact: 'Zero OTP Interception', tag: 'E-commerce', color: 'text-safe', quote: "The SIM-swap detection is a literal game-changer." },
-                { name: 'Accra Pay', impact: 'Frictionless Onboarding', tag: 'Payments', color: 'text-brand-500', quote: "Increased checkout conversion by 28% overnight." },
-                { name: 'Joburg Delivery', impact: 'Verified Tracking', tag: 'Last Mile', color: 'text-suspicious', quote: "Finally, a fraud solution built for African markets." }
+                { name: 'Lagos MicroLend', impact: 'Fraud reduced by 92%', tag: 'Lending', color: 'text-brand-400', quote: "SIM-swap detection stopped ₦12M in fraudulent loan disbursements last quarter." },
+                { name: 'Kigali Neobank', impact: '100% Account Security', tag: 'Neobanking', color: 'text-accent-400', quote: "Instantly verified every login with telco-grade signals — zero account takeovers." },
+                { name: 'Nairobi M-Pesa+', impact: 'Zero OTP Interception', tag: 'Mobile Money', color: 'text-safe', quote: "We replaced SMS OTP entirely — saved 90% on verification costs." },
+                { name: 'Accra PayStack', impact: 'Conversion up 28%', tag: 'Payments', color: 'text-brand-500', quote: "Frictionless checkout with carrier-level trust. Conversion jumped overnight." },
+                { name: 'Joburg InsurTech', impact: 'Claims Fraud Halved', tag: 'InsurTech', color: 'text-suspicious', quote: "Location verification catches fraudulent claims before they're even filed." },
+                { name: 'Kampala Wallet', impact: 'Onboarding in 8 sec', tag: 'Fintech', color: 'text-safe', quote: "Number verification replaced our entire KYC step — users love it." },
+                { name: 'Dar es Salaam Pay', impact: '₦0 Chargeback Loss', tag: 'Payments', color: 'text-accent-400', quote: "Every transaction is SIM-verified at login. Chargebacks dropped to zero." },
+                // Duplicate for seamless marquee loop
+                { name: 'Lagos MicroLend', impact: 'Fraud reduced by 92%', tag: 'Lending', color: 'text-brand-400', quote: "SIM-swap detection stopped ₦12M in fraudulent loan disbursements last quarter." },
+                { name: 'Kigali Neobank', impact: '100% Account Security', tag: 'Neobanking', color: 'text-accent-400', quote: "Instantly verified every login with telco-grade signals — zero account takeovers." },
+                { name: 'Nairobi M-Pesa+', impact: 'Zero OTP Interception', tag: 'Mobile Money', color: 'text-safe', quote: "We replaced SMS OTP entirely — saved 90% on verification costs." },
+                { name: 'Accra PayStack', impact: 'Conversion up 28%', tag: 'Payments', color: 'text-brand-500', quote: "Frictionless checkout with carrier-level trust. Conversion jumped overnight." },
+                { name: 'Joburg InsurTech', impact: 'Claims Fraud Halved', tag: 'InsurTech', color: 'text-suspicious', quote: "Location verification catches fraudulent claims before they're even filed." },
+                { name: 'Kampala Wallet', impact: 'Onboarding in 8 sec', tag: 'Fintech', color: 'text-safe', quote: "Number verification replaced our entire KYC step — users love it." },
+                { name: 'Dar es Salaam Pay', impact: '₦0 Chargeback Loss', tag: 'Payments', color: 'text-accent-400', quote: "Every transaction is SIM-verified at login. Chargebacks dropped to zero." }
               ].map((story, i) => (
                 <div key={i} className="flex-shrink-0 bg-dark-900/40 p-6 md:p-8 rounded-[2.5rem] border border-white/5 w-[280px] md:w-[350px] hover:border-brand-500/30 transition-all group">
                   <div className="flex justify-between items-start mb-6">
