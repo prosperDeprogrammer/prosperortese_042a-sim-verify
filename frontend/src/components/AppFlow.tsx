@@ -175,8 +175,8 @@ export const VerificationFlow: React.FC<{ initialStep?: Step; onComplete: () => 
     <div className="pt-24 md:pt-32 pb-20 px-4 md:px-6 max-w-4xl mx-auto min-h-screen">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-xl md:text-2xl font-black text-white tracking-tight">Security Gateway</h1>
-          <p className="text-dark-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">Network-as-Code Terminal</p>
+          <h1 className="text-xl md:text-2xl font-black text-white tracking-tight">Fintech Login Protection</h1>
+          <p className="text-dark-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">Live Anti-Fraud API Demo</p>
         </div>
         <button
           onClick={() => setStep(step === 'docs' ? 'input' : 'docs')}
@@ -215,16 +215,16 @@ export const VerificationFlow: React.FC<{ initialStep?: Step; onComplete: () => 
                   <pre className="bg-[#0D1117] p-5 rounded-2xl border border-dark-800 overflow-x-auto text-[10px] font-mono text-brand-300 leading-loose">
                     <code>{`const axios = require('axios');
 
-// Check SIM Swap + Identity
-const response = await axios.post(
-  'https://api.simverify.pro/v1/verify', 
-  { phoneNumber: '${phoneNumber || '2348000000000'}' },
-  { headers: { 'Authorization': 'Bearer <KEY>' } }
-);
+                    // Check SIM Swap + Identity
+                    const response = await axios.post(
+                      'https://api.simverify.pro/v1/verify', 
+                      { phoneNumber: '${phoneNumber || '2348000000000'}' },
+                      { headers: { 'Authorization': 'Bearer <KEY>' } }
+                    );
 
-if (response.data.status === 'HIGH RISK') {
-  blockTransaction(); // AI mitigation
-}`}</code>
+                    if (response.data.status === 'HIGH RISK') {
+                      blockTransaction(); // AI mitigation
+                    }`}</code>
                   </pre>
                 </div>
 
@@ -235,9 +235,9 @@ if (response.data.status === 'HIGH RISK') {
                   </h3>
                   <pre className="bg-[#0D1117] p-5 rounded-2xl border border-dark-800 overflow-x-auto text-[10px] font-mono text-safe leading-loose">
                     <code>{`curl -X POST https://api.simverify.pro/v1/verify \\
-  -H "Authorization: Bearer <KEY>" \\
-  -H "Content-Type: application/json" \\
-  -d '{"phoneNumber": "${phoneNumber || '2348000000000'}"}'`}</code>
+                      -H "Authorization: Bearer <KEY>" \\
+                      -H "Content-Type: application/json" \\
+                      -d '{"phoneNumber": "${phoneNumber || '2348000000000'}"}'`}</code>
                   </pre>
                 </div>
               </section>
@@ -274,18 +274,18 @@ if (response.data.status === 'HIGH RISK') {
           <div className="glass-card p-6 md:p-8 bg-brand-500/5 border-brand-500/10">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-lg md:text-xl font-semibold text-white">SME Trust Sandbox</h3>
-                <p className="text-dark-300 text-sm md:text-base mt-2">Click a test scenario below to auto-fill and test real signals.</p>
+                <h3 className="text-lg md:text-xl font-semibold text-white">Login Scenario Simulator</h3>
+                <p className="text-dark-300 text-sm md:text-base mt-2">Simulate how your fintech app would respond to these real login attempts.</p>
               </div>
               <span className="text-[9px] font-mono font-black text-brand-500 bg-brand-500/10 px-2.5 py-1 rounded-full border border-brand-500/20">LIVE_GATEWAY</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
               {[
-                { title: 'SIM Swap Detected', number: '99999991000', desc: 'SIM swap = TRUE. Detect a hacked line.', icon: '⚠️' },
-                { title: 'Stable SIM Check', number: '99999991001', desc: 'SIM swap = FALSE. Safe network ID.', icon: '🛡️' },
-                { title: 'Secure Onboarding', number: '99999991001', desc: 'Passwordless + Safe SIM flow.', icon: '✅' },
-                { title: 'Location Mismatch', number: '99999991003', desc: 'User is outside the allowed zone.', icon: '📍' }
+                { title: 'Hacked Account Login', number: '99999991000', desc: 'SIM was swapped. Block this login immediately.', icon: '🚨' },
+                { title: 'Safe User Login', number: '99999991001', desc: 'Clean SIM history. Allow login — low risk.', icon: '✅' },
+                { title: 'New User Onboarding', number: '99999991001', desc: 'First-time signup. Verify without OTP.', icon: '🛡️' },
+                { title: 'Suspicious Login Attempt', number: '99999991003', desc: 'Device outside expected location. Flag it.', icon: '⚠️' }
               ].map((test, i) => (
                 <button
                   key={i}
@@ -313,13 +313,13 @@ if (response.data.status === 'HIGH RISK') {
           <div ref={inputSectionRef} className="glass-card p-8 md:p-12 border-t-4 border-t-brand-500 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/5 blur-3xl rounded-full -mr-16 -mt-16"></div>
             <div className="mb-10 text-center md:text-left">
-              <h2 className="text-2xl md:text-3xl font-black text-white mb-2 tracking-tighter">Network Identity Scan</h2>
-              <p className="text-dark-400 text-xs md:text-sm font-medium">Verify any mobile number across Africa via carrier-grade network intelligence.</p>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-2 tracking-tighter">Run a Login Check</h2>
+              <p className="text-dark-400 text-xs md:text-sm font-medium">Enter a user's phone number to get an instant fraud decision at login  powered by live Nokia Network-as-Code signals.</p>
             </div>
 
             <div className="max-w-md mx-auto md:mx-0">
               <div className="mb-8 text-left">
-                <label className="block text-[11px] font-medium text-dark-500 mb-2.5 tracking-wide ml-1">Phone Number (MSISDN)</label>
+                <label className="block text-[11px] font-medium text-dark-500 mb-2.5 tracking-wide ml-1">Customer's Phone Number</label>
                 <div className="relative group">
                   <div className="bg-dark-950 rounded-xl flex items-center w-full border border-dark-800 group-focus-within:border-brand-500/50 transition-all shadow-inner">
                     <span className="pl-5 text-brand-500 font-medium text-lg">+</span>
@@ -339,9 +339,13 @@ if (response.data.status === 'HIGH RISK') {
               <button
                 onClick={handleCheckSim}
                 disabled={!phoneNumber}
-                className="btn-primary w-full glow-effect disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-full  px-10 
+                      py-3 bg-brand-600 text-white rounded-2xl text-[13px]
+                      font-bold shadow-xl shadow-slate-900/20 hover:-translate-y-1 
+                      transition-all flex items-center justify-center gap-2 
+                      group tracking-[2px] uppercase  glow-effect disabled:opacity-30 disabled:cursor-not-allowed"
               >
-                Verify Identity
+                Check  Risk
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
               </button>
               <p className="mt-6 text-center text-dark-500 text-[11px] font-medium tracking-wide">Powered by CAMARA Open Gateway Standard</p>
@@ -395,7 +399,7 @@ if (response.data.status === 'HIGH RISK') {
               <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-10">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <h2 className="text-2xl font-bold text-white tracking-tight">Security Intelligence Report</h2>
+                    <h2 className="text-2xl font-bold text-white tracking-tight">Login Decision</h2>
                     {/* <span className="text-[10px] font-mono text-dark-500">ID: {result.timestamp.slice(-5).toUpperCase()}</span> */}
                   </div>
                   <div className="flex items-center gap-2">
@@ -532,13 +536,21 @@ if (response.data.status === 'HIGH RISK') {
               <div className="flex flex-col sm:flex-row gap-4 mt-3">
                 <button
                   onClick={() => { setStep('input'); setPhoneNumber(''); }}
-                  className="btn-primary flex-1"
+                  className="w-full sm:w-auto px-10 
+                      py-3 bg-brand-600 text-white rounded-2xl text-[13px]
+                      font-bold shadow-xl shadow-slate-900/20 hover:-translate-y-1 
+                      transition-all flex items-center justify-center gap-2 
+                      group tracking-[2px] uppercase flex-1"
                 >
-                  New Identity Scan
+                  Check Another
                 </button>
                 <button
                   onClick={() => onComplete()}
-                  className="btn-primary flex-1"
+                  className="w-full sm:w-auto px-10 
+                      py-3 bg-brand-600 text-white rounded-2xl text-[13px]
+                      font-bold shadow-xl shadow-slate-900/20 hover:-translate-y-1 
+                      transition-all flex items-center justify-center gap-2 
+                      group tracking-[2px] uppercase flex-1"
                 >
                   View Dashboard
                 </button>

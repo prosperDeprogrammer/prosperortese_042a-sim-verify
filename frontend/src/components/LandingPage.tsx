@@ -20,24 +20,24 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
         </div> */}
 
         <h1 className="text-3xl md:text-5xl lg:text-7xl font-black text-white mb-6 md:mb-8 leading-[1.1] tracking-tighter">
-          Empowering SME <br />
+          Stop SIM-Swap Fraud <br />
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-accent-400 to-brand-600">
-            Trust & Growth
+            in Your Fintech App
           </span>
         </h1>
 
         <p className="text-sm md:text-xl text-dark-400 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
-          The unified API for African SMEs to enable **one-click checkout security**, passwordless onboarding, and fraud-proof digital commerce using GSMA Open Gateway.
+          One API call protects your fintech users at login. Detect SIM-swap fraud before it costs you  powered by Nokia Network-as-Code and GSMA Open Gateway.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-3">
           <button
             onClick={onStart}
             className="w-full sm:w-auto px-10 
-                                py-3 bg-brand-600 text-white rounded-2xl text-[13px]
-                                 font-bold shadow-xl shadow-slate-900/20 hover:-translate-y-1 
-                                 transition-all flex items-center justify-center gap-2 
-                                 group tracking-[2px] uppercase"
+                      py-3 bg-brand-600 text-white rounded-2xl text-[13px]
+                      font-bold shadow-xl shadow-slate-900/20 hover:-translate-y-1 
+                      transition-all flex items-center justify-center gap-2 
+                      group tracking-[2px] uppercase"
           >
             Start  Free
             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
@@ -54,42 +54,47 @@ export const LandingPage: React.FC<{ onStart: () => void; onSandbox: () => void 
         {/* Use Cases Section */}
         <div className="mt-32 text-left">
           <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight">Real-World SME Applications</h2>
-            <p className="text-dark-400 text-sm md:text-lg max-w-2xl mx-auto">How African businesses use SimVerify to build trust and scale securely.</p>
+            <h2 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight">How SimVerify Protects Fintech Logins</h2>
+            <p className="text-dark-400 text-sm md:text-lg max-w-2xl mx-auto">One API call. Three network signals. A single fraud decision — before the account is taken over.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Use Case 1 */}
-            <div className="bg-dark-900/40 p-8 rounded-[2rem] border border-white/5 hover:border-brand-500/30 transition-all group">
-              <div className="w-12 h-12 bg-accent-500/10 rounded-2xl flex items-center justify-center text-accent-400 mb-6 group-hover:scale-110 transition-transform">
+            {/* Hero Use Case — SIM Swap */}
+            <div className="bg-dark-900/40 p-8 rounded-[2rem] border border-brand-500/30 hover:border-brand-500/60 transition-all group relative overflow-hidden">
+              <div className="absolute top-4 right-4">
+                <span className="text-[8px] font-black uppercase tracking-widest px-2 py-1 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-full">Primary Signal</span>
+              </div>
+              <div className="w-12 h-12 bg-brand-500/10 rounded-2xl flex items-center justify-center text-brand-400 mb-6 group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Account Takeover Prevention</h3>
-              <p className="text-dark-400 text-sm leading-relaxed mb-4">Block hackers before they access accounts by checking for recent SIM Swaps during password resets or high-value checkout.</p>
+              <h3 className="text-xl font-bold text-white mb-3">SIM-Swap Detection</h3>
+              <p className="text-dark-400 text-sm leading-relaxed mb-4">The #1 fraud signal. If a user's SIM was recently swapped, their fintech account is likely compromised. Block the login instantly before money is stolen.</p>
               <div className="inline-flex items-center gap-2 text-[10px] font-bold text-brand-500 uppercase tracking-widest">
                 <span className="w-1.5 h-1.5 bg-brand-500 rounded-full"></span> simSwap API
               </div>
             </div>
 
-            {/* Use Case 2 */}
-            <div className="bg-dark-900/40 p-8 rounded-[2rem] border border-white/5 hover:border-brand-500/30 transition-all group">
+            {/* Supporting Signal 1 */}
+            <div className="bg-dark-900/40 p-8 rounded-[2rem] border border-white/5 hover:border-brand-500/30 transition-all group opacity-90">
+              <div className="absolute top-4 right-4">
+              </div>
               <div className="w-12 h-12 bg-safe/10 rounded-2xl flex items-center justify-center text-safe mb-6 group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Passwordless Onboarding</h3>
-              <p className="text-dark-400 text-sm leading-relaxed mb-4">Increase conversion rates by instantly verifying mobile numbers silently in the background. No SMS OTPs required.</p>
+              <h3 className="text-xl font-bold text-white mb-3">Number Ownership Verify</h3>
+              <p className="text-dark-400 text-sm leading-relaxed mb-4">Silently confirm the mobile number belongs to the device attempting login. No OTP needed carrier-level confirmation in milliseconds.</p>
               <div className="inline-flex items-center gap-2 text-[10px] font-bold text-brand-500 uppercase tracking-widest">
                 <span className="w-1.5 h-1.5 bg-brand-500 rounded-full"></span> numberVerification API
               </div>
             </div>
 
-            {/* Use Case 3 */}
-            <div className="bg-dark-900/40 p-8 rounded-[2rem] border border-white/5 hover:border-brand-500/30 transition-all group">
+            {/* Supporting Signal 2 */}
+            <div className="bg-dark-900/40 p-8 rounded-[2rem] border border-white/5 hover:border-brand-500/30 transition-all group opacity-90">
               <div className="w-12 h-12 bg-suspicious/10 rounded-2xl flex items-center justify-center text-suspicious mb-6 group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /></svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Geo-Fenced Commerce</h3>
-              <p className="text-dark-400 text-sm leading-relaxed mb-4">Validate that a transaction is originating from the registered device's physical location to stop Card-Not-Present fraud.</p>
+              <h3 className="text-xl font-bold text-white mb-3">Device Location Check</h3>
+              <p className="text-dark-400 text-sm leading-relaxed mb-4">Verify the login is happening from an expected location. A Lagos-based account logging in from an unknown region is a red flag  caught automatically.</p>
               <div className="inline-flex items-center gap-2 text-[10px] font-bold text-brand-500 uppercase tracking-widest">
                 <span className="w-1.5 h-1.5 bg-brand-500 rounded-full"></span> locationVerify API
               </div>

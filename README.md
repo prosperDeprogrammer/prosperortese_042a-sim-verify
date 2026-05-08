@@ -1,20 +1,20 @@
 # 🛡️ SimVerify Pro
-### *Enterprise-Grade Security for African SMEs*
+### *The Anti-Fraud API for African Fintech — Powered by Nokia Network-as-Code*
 
-**SimVerify Pro** is a unified Fraud Intelligence platform built for the **Africa Ignite Hackathon 2026**. It empowers small and medium enterprises (SMEs) to secure their digital commerce using live telecom network intelligence via the **GSMA Open Gateway** and **Nokia Network-as-Code**.
+**SimVerify Pro** is a B2B Anti-Fraud API built for the **Africa Ignite Hackathon 2026**. It gives African fintech apps one simple API call to detect SIM-swap fraud at login — using live telecom network intelligence via the **GSMA Open Gateway** and **Nokia Network-as-Code**.
 
 🚀 **[LIVE DEMO: prosperortese-042a-sim-verify.vercel.app](https://prosperortese-042a-sim-verify.vercel.app/)**
 
 ---
 
-## 💎 The Problem: The "Trust Gap" for SMEs
-Digital commerce in Africa is hindered by fraud—specifically **SIM-swap account takeovers** and **OTP interception**. Small businesses lack the budget for expensive enterprise security, leaving them and their customers vulnerable.
+## 💎 The Problem: SIM-Swap Fraud is Draining Fintech Accounts Across Africa
+In Nigeria and across Africa, SIM-swap account takeovers are one of the biggest threats to fintech users. A hacker swaps a victim's SIM, intercepts their OTP, and drains their account — all in minutes. Small fintech apps can't afford enterprise fraud tools to stop this.
 
 ## 💡 The Solution: SimVerify Pro (Theme 5: SME Enablement & Digital Commerce Growth)
-Aligned with **SME Enablement & Digital Commerce Growth**, we provide a simple, plug-and-play API that gives SMEs access to telco-level security signals.
-- **Passwordless Onboarding**: Verify users silently via their mobile network.
-- **SIM-Swap Detection**: Block transactions if a user's SIM was recently swapped.
-- **Location Validation**: Ensure a merchant's checkout is happening where the customer actually is.
+Aligned with **SME Enablement & Digital Commerce Growth**, SimVerify Pro is a plug-and-play API that gives any fintech app access to telco-level fraud signals with one API call at login.
+- **SIM-Swap Detection** *(Primary)*: Instantly detect if a user's SIM was recently swapped — block the login before the account is taken over.
+- **Number Ownership Verify**: Silently confirm the mobile number belongs to the device — no OTP required.
+- **Device Location Check**: Verify the login is happening from an expected location — flag suspicious logins automatically.
 
 
 ## 🎡 Judge's 1-Minute Demo Guide

@@ -35,7 +35,7 @@ export const Dashboard: React.FC = () => {
             {/* <span className="bg-brand-500/10 text-brand-400 text-[9px] font-bold px-2 py-1 rounded border border-brand-500/20 tracking-widest uppercase">Live Protection</span> */}
           </div>
           <p className="text-dark-400 text-sm md:text-lg max-w-2xl">
-            Real-time identity verification signals for African Fintechs and E-commerce platforms.
+            Real-time identity verification signals for African Fintechs platforms.
             <span className="hidden md:inline"> Built on enterprise-grade network infrastructure.</span>
           </p>
         </div>

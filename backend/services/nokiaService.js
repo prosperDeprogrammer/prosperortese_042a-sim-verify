@@ -65,7 +65,8 @@ async function getNetworkSignals(phoneNumber, locationData = null) {
 
 
   const apiKey = process.env.NAC_API_KEY;
-  const apiHost = process.env.NAC_RAPIDAPI_HOST || 'network-as-code.p.rapidapi.com';
+  const apiHost = process.env.NAC_RAPIDAPI_HOST || 'network-as-code.nokia.rapidapi.com';
+  const authToken = process.env.NAC_AUTH_TOKEN || null; // optional CAMARA device auth token
   const timeout = parseInt(process.env.NAC_TIMEOUT_MS) || 8000;
 
   const mockNumberVerification = process.env.NAC_MOCK_NUMBER_VERIFICATION === 'true';
@@ -78,7 +79,8 @@ async function getNetworkSignals(phoneNumber, locationData = null) {
   const headers = {
     'Content-Type': 'application/json',
     'X-RapidAPI-Key': apiKey,
-    'X-RapidAPI-Host': apiHost
+    'X-RapidAPI-Host': apiHost,
+    ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {})
   };
 
   console.log(`[NETWORK-AS-CODE] Analyzing: ${phoneNumber}`);
