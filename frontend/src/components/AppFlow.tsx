@@ -283,7 +283,7 @@ export const VerificationFlow: React.FC<{ initialStep?: Step; onComplete: () => 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
               {[
                 { title: 'Hacked Account Login', number: '99999991000', desc: 'SIM was swapped. Block this login immediately.', icon: '🚨' },
-                { title: 'Safe User Login', number: '99999991001', desc: 'Clean SIM history. Allow login — low risk.', icon: '✅' },
+                { title: 'Safe User Login', number: '99999991001', desc: 'Clean SIM history. Allow login  low risk.', icon: '✅' },
                 { title: 'New User Onboarding', number: '99999991001', desc: 'First-time signup. Verify without OTP.', icon: '🛡️' },
                 { title: 'Suspicious Login Attempt', number: '99999991003', desc: 'Device outside expected location. Flag it.', icon: '⚠️' }
               ].map((test, i) => (
